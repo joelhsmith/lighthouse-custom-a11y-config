@@ -1,0 +1,92 @@
+module.exports = {
+  passes: [{
+    recordTrace: true,
+    pauseAfterLoadMs: 5000,
+    useThrottling: true,
+    gatherers: [
+      'runtime-exceptions',
+      'chrome-console-messages',
+      'accessibility',
+    ],
+  }],
+  audits: [
+    'errors-in-console',
+    'accessibility/accesskeys',
+    'accessibility/button-name',
+    'accessibility/bypass',
+    'accessibility/color-contrast',
+    'accessibility/document-title',
+    'accessibility/duplicate-id',
+    'accessibility/frame-title',
+    'accessibility/html-has-lang',
+    'accessibility/html-lang-valid',
+    'accessibility/image-alt',
+    'accessibility/input-image-alt',
+    'accessibility/label',
+    'accessibility/valid-lang',
+    'accessibility/manual/focus-traps',
+    'accessibility/manual/focusable-controls',
+    'accessibility/manual/heading-levels',
+    'accessibility/manual/managed-focus',
+    'accessibility/manual/use-landmarks',
+    'accessibility/manual/visual-order-follows-dom',
+  ],
+  groups: {
+    'a11y-color-contrast': {
+      title: 'Color Contrast Is Satisfactory',
+      description: 'These are opportunities to improve the legibility of your content.',
+    },
+    'a11y-describe-contents': {
+      title: 'Elements Describe Contents Well',
+      description: 'These are opportunities to make your content easier to understand for a user of assistive technology, like a screen reader.',
+    },
+    'a11y-well-structured': {
+      title: 'Elements Are Well Structured',
+      description: 'These are opportunities to make sure your HTML is appropriately structured.',
+    },
+    'a11y-language': {
+      title: 'Page Specifies Valid Language',
+      description: 'These are opportunities to improve the interpretation of your content by users in different locales.',
+    },
+    'robust': {
+      title: 'Robust',
+      description: 'Content must be robust enough that it can be interpreted reliably by a wide variety of user agents, including assistive technologies.',
+    },
+  },
+  categories: {
+    'accessibility': {
+      title: 'Accessibility',
+      description: 'These checks highlight opportunities to [improve the accessibility of your web app](https://developers.google.com/web/fundamentals/accessibility). Only a subset of accessibility issues can be automatically detected so manual testing is also encouraged.',
+      manualDescription: 'These items address areas which an automated testing tool cannot cover. Learn more in our guide on [conducting an accessibility review](https://developers.google.com/web/fundamentals/accessibility/how-to-review).',
+      auditRefs: [
+        {id: 'accesskeys', weight: 1, group: 'a11y-correct-attributes'},
+        {id: 'button-name', weight: 10, group: 'a11y-element-names'},
+        {id: 'bypass', weight: 10, group: 'a11y-describe-contents'},
+        {id: 'color-contrast', weight: 6, group: 'a11y-color-contrast'},
+        {id: 'document-title', weight: 2, group: 'a11y-describe-contents'},
+        {id: 'duplicate-id', weight: 5, group: 'a11y-well-structured'},
+        {id: 'frame-title', weight: 5, group: 'a11y-describe-contents'},
+        {id: 'html-has-lang', weight: 4, group: 'a11y-language'},
+        {id: 'html-lang-valid', weight: 1, group: 'a11y-language'},
+        {id: 'image-alt', weight: 8, group: 'a11y-correct-attributes'},
+        {id: 'input-image-alt', weight: 1, group: 'a11y-correct-attributes'},
+        {id: 'label', weight: 10, group: 'a11y-describe-contents'},
+        {id: 'valid-lang', weight: 1, group: 'a11y-language'},
+        // Manual audits
+        {id: 'focusable-controls', weight: 0},
+        {id: 'managed-focus', weight: 0},
+        {id: 'focus-traps', weight: 0},
+        {id: 'visual-order-follows-dom', weight: 0},
+        {id: 'heading-levels', weight: 0},
+        {id: 'use-landmarks', weight: 0},
+      ],
+    },
+    'best-practices': {
+      title: 'Robust',
+      description: 'Console errors can generate unpredictable results for assistive technologies.  It can also cause cross-browser, cross-device, and cross-platform compatibility issues.',
+      auditRefs: [
+        {id: 'errors-in-console', weight: 1, group: 'robust'},
+      ],
+    },
+  },
+};
