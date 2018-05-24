@@ -1,3 +1,7 @@
+/**
+ * Custom config file for running A11y audits in Lighthouse.
+ * Work in progress
+ */
 module.exports = {
   passes: [{
     recordTrace: true,
@@ -7,6 +11,9 @@ module.exports = {
       'runtime-exceptions',
       'chrome-console-messages',
       'accessibility',
+      'viewport',
+      'seo/font-size',
+      'fonts',
     ],
   }],
   audits: [
@@ -30,6 +37,9 @@ module.exports = {
     'accessibility/manual/managed-focus',
     'accessibility/manual/use-landmarks',
     'accessibility/manual/visual-order-follows-dom',
+    'manual/pwa-cross-browser',
+    'seo/font-size',
+    'font-display',
   ],
   groups: {
     'a11y-color-contrast': {
@@ -48,9 +58,25 @@ module.exports = {
       title: 'Page Specifies Valid Language',
       description: 'These are opportunities to improve the interpretation of your content by users in different locales.',
     },
+    'a11y-correct-attributes': {
+      title: 'Elements Use Attributes Correctly',
+      description: 'These are opportunities to improve the configuration of your HTML elements.',
+    },
+    'a11y-element-names': {
+      title: 'Elements Have Discernible Names',
+      description: 'These are opportunities to improve the semantics of the controls in your application. This may enhanye the experienye for users of assistive technology, like a screen reader.',
+    },
+    'a11y-manual-checks': {
+      title: 'Manual Checks',
+      description: 'Lorem ipsem.',
+    },
     'robust': {
       title: 'Robust',
       description: 'Content must be robust enough that it can be interpreted reliably by a wide variety of user agents, including assistive technologies.',
+    },
+    'legible': {
+      title: 'Adequate Font Sizes',
+      description: 'Small text is harder to read. Links in small text results in small touch and pointer targets, which make it hard for people to click links and navigate the website. [Learn more](https://material.io/design/usability/accessibility.html#layout-typography).',
     },
   },
   categories: {
@@ -72,20 +98,16 @@ module.exports = {
         {id: 'input-image-alt', weight: 1, group: 'a11y-correct-attributes'},
         {id: 'label', weight: 10, group: 'a11y-describe-contents'},
         {id: 'valid-lang', weight: 1, group: 'a11y-language'},
-        // Manual audits
-        {id: 'focusable-controls', weight: 0},
-        {id: 'managed-focus', weight: 0},
-        {id: 'focus-traps', weight: 0},
-        {id: 'visual-order-follows-dom', weight: 0},
-        {id: 'heading-levels', weight: 0},
-        {id: 'use-landmarks', weight: 0},
-      ],
-    },
-    'best-practices': {
-      title: 'Robust',
-      description: 'Console errors can generate unpredictable results for assistive technologies.  It can also cause cross-browser, cross-device, and cross-platform compatibility issues.',
-      auditRefs: [
         {id: 'errors-in-console', weight: 1, group: 'robust'},
+        {id: 'font-size', weight: 0, group: 'legible'},
+        // Manual audits
+        {id: 'focusable-controls', weight: 0, group: 'a11y-manual-checks'},
+        {id: 'managed-focus', weight: 0, group: 'a11y-manual-checks'},
+        {id: 'focus-traps', weight: 0, group: 'a11y-manual-checks'},
+        {id: 'visual-order-follows-dom', weight: 0, group: 'a11y-manual-checks'},
+        {id: 'heading-levels', weight: 0, group: 'a11y-manual-checks'},
+        {id: 'use-landmarks', weight: 0, group: 'a11y-manual-checks'},
+        {id: 'pwa-cross-browser', weight: 0, group: 'robust'},
       ],
     },
   },
