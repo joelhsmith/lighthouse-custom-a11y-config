@@ -57,6 +57,7 @@ module.exports = {
     'accessibility/manual/offscreen-content-hidden',
     'accessibility/manual/use-landmarks',
     'accessibility/manual/visual-order-follows-dom',
+    'manual/pwa-cross-browser',
   ],
   groups: {
     'a11y-color-contrast': {
